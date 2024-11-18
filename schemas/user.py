@@ -12,6 +12,7 @@ class UserCreate(BaseModel):
 
 
 class UsersList(BaseModel):
+    id: int
     username: str   # Поле username с ограничением длины
     email: EmailStr  # Email с автоматической валидацией
     hashed_password: str
