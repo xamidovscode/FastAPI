@@ -11,7 +11,7 @@ app.include_router(user.router)
 # Настройка Tortoise ORM
 register_tortoise(
     app,
-    db_url="postgres://username:password@localhost:5432/mydatabase",  # URL для подключения к базе данных PostgreSQL
+    db_url="postgres://fastapi:fastapi@localhost:5432/fastapi",  # URL для подключения к базе данных PostgreSQL
     modules={"models": ["models.user"]},  # Путь к вашим моделям
     generate_schemas=True,  # Автоматическое создание схем в базе данных
     add_exception_handlers=True,  # Добавление обработчиков ошибок для базы данных
