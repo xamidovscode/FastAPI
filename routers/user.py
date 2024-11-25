@@ -3,13 +3,11 @@ from fastapi import APIRouter, HTTPException
 from models.user import User
 from schemas.user import UserCreate, UsersList
 
-# Создаем роутер
 router = APIRouter()
 
 
 @router.post("/user/create/")
 async def create_user(user_data: UserCreate):
-    # Проверяем, существует ли пользователь с таким email
     existing_user = await User.filter(email=user_data.email).first()
     if existing_user:
         raise HTTPException(
@@ -17,10 +15,7 @@ async def create_user(user_data: UserCreate):
             detail="Пользователь с таким email уже существует",
         )
 
-    # Хэшируем пароль (пример, лучше использовать библиотеку bcrypt)
     hashed_password = f"hashed-{user_data.password}"
-
-    # Создаем пользователя
     user = await User.create(
         username=user_data.username,
         email=user_data.email,
